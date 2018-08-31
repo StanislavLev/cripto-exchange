@@ -1,11 +1,14 @@
 <template>
   <div>
     <h2>EXCHANGE</h2>
-    <h6 v-for="exchange in exchanges">{{ exchange }}</h6>
+    <h6 v-for="exchange in exchanges" @click="findPair(exchange)">{{ exchange }}</h6>
   </div>
 </template>
 
 <script>
+
+import {bus} from '@/main.js';
+
 export default {
   name: 'Exchange',
   data() {
@@ -14,7 +17,9 @@ export default {
     };
   },
   methods: {
-    
+    findPair(exchange) {
+      bus.$emit('exchangeChosen', exchange);
+    },
   },
 };
 </script>
