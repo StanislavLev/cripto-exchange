@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <h1>{{ pair }}</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'Pair',
   data() {
     return {
-      msg: 'Pair column',
+      pair: 'BTC/USD',
     };
   },
 };

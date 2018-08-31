@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <h2>EXCHANGE</h2>
+    <h6 v-for="exchange in exchanges">{{ exchange }}</h6>
   </div>
 </template>
 
@@ -9,8 +10,11 @@ export default {
   name: 'Exchange',
   data() {
     return {
-      msg: 'Exchange column',
+      exchanges: ccxt.exchanges,
     };
+  },
+  methods: {
+    
   },
 };
 </script>
