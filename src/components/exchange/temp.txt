@@ -1,0 +1,16 @@
+created(){
+    (async () => {
+      let exchanges = ccxt.exchanges;     
+      let exchObj = {};
+      let curMarket = {};
+      for(let i = 0; i < exchanges.length; i++){
+        try {
+          exchObj = new ccxt[exchanges[i]]();
+          curMarket = await exchObj.loadMarkets();
+          this.exchangesWithMarkets.push(exchObj);
+        } catch(err) {
+          continue;
+        }
+      }
+    })();
+  },
