@@ -1,8 +1,28 @@
 <template>
-  <div>
-    <h2>TRADES : {{dateNow.getUTCHours()}} : {{dateNow.getUTCMinutes()}} : {{dateNow.getUTCSeconds()}}</h2>
-    <h4 v-show="errMsg">{{errMsg}}</h4>
-    <h4 v-for="trade in allTrades">{{ trade.amount }} : {{ trade.price }} : {{ trade.datetime }}<br /> </h4>
+  <div class="height100">
+    <div class="header-container">
+      <h2 class="text-center">Trades <small><sup>live</sup> : {{exchange.id}} ( {{pair}} )</small></h2>
+      <p class="text-center">Last update: {{dateNow.getUTCHours()}} : {{dateNow.getUTCMinutes()}} : {{dateNow.getUTCSeconds()}} (UTC)</p>
+    </div>
+    <div class="items-container">
+      <h4 v-show="errMsg">{{errMsg}}</h4>
+      <table v-show="!errMsg" class="table table-borderless text-center">
+        <thead>
+          <tr>
+            <th><h4>Size:</h4></th>
+            <th><h4>Price({{pair.slice(pair.indexOf('/')+1)}}):</h4></th>
+            <th><h4>Date / Time (UTC):</h4></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="trade in allTrades">
+            <td>{{ trade.amount }}</td>
+            <td>{{ trade.price }}</td> 
+            <td>{{ trade.datetime.slice(0, trade.datetime.indexOf('.')).replace('T' , ' / ') }}</td>
+          </tr>
+        </tbody>  
+      </table>
+    </div>
   </div>
 </template>
 
@@ -38,6 +58,12 @@ export default {
           if (this.exchange.has['fetchTrades']) {
             try {
               this.allTrades = await exchange.fetchTrades (this.pair, since, this.limit);
+              if(this.allTrades.length == 0){
+                this.errMsg = 'There is no data available.';
+              }
+              else {
+                this.allTrades.reverse();
+              }
               this.dateNow = new Date();
             } catch(err) {
               this.errMsg = "Failed to fetch the trades info, please try another pair or exchange."
@@ -51,6 +77,8 @@ export default {
       2000);
     });
     bus.$on('exchangeChosenErr', (err)=>{
+      this.exchange = {};
+      this.pair = '';
       this.allTrades = [];
       this.errMsg = '';
       if(this.fetchTradesInterval){
@@ -62,5 +90,14 @@ export default {
 </script>
 
 <style scoped>
+
+th, td{
+  padding: 0 5px;
+}
+
+tbody > tr:hover{
+  background-color: gray;
+}
+
 
 </style>

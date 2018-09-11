@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-3 main-col">
         <exchange></exchange>
       </div>
-      <div class="col-sm-3" >
+      <div class="col-sm-3 main-col" >
         <pair></pair>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 main-col">
         <trades></trades>
       </div>
     </div>

@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <h2>EXCHANGE</h2>
-    <input type="text" v-model="exchangeFilter"></input>
-    <h6 v-for="exchange in exchanges" @click="findPair(exchange)" v-show="exchange.indexOf(exchangeFilter)!=-1">{{ exchange }}</h6>
+  <div class="height100">
+    <div class="header-container">
+      <h2 class="text-center">Exchange</h2>
+      <input type="text" v-model="exchangeFilter" placeholder="Type an exchange name"></input>
+    </div>
+    <div class="items-container">
+      <ul>
+        <li v-for="exchange in exchanges" @click="findPair(exchange)" v-show="exchange.indexOf(exchangeFilter)!=-1">{{ exchange }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -37,4 +43,17 @@ export default {
 
 <style scoped>
 
+input{
+  width: 100%;
+}
+
+.items-container > ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.items-container > ul > li:hover{
+  cursor: pointer;
+  background-color: gray;
+}
 </style>
