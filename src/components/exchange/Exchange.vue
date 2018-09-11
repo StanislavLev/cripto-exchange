@@ -6,7 +6,7 @@
     </div>
     <div class="items-container">
       <ul>
-        <li v-for="exchange in exchanges" @click="findPair(exchange)" v-show="exchange.indexOf(exchangeSearch)!=-1">{{ exchange }}</li>
+        <li v-for="exchange in exchanges" @click="findPair(exchange)" v-show="exchange.toLowerCase().indexOf(exchangeSearch.toLowerCase())!=-1">{{ exchange }}</li>
       </ul>
     </div>
   </div>

@@ -8,7 +8,7 @@
       <h4 class="text-center" v-show="!currExchange.symbols && !errMsg">Chose an exchange</h4>
       <h4 class="text-center" v-show="errMsg">{{errMsg}}</h4>
       <ul>
-        <li v-for="pair in currExchange.symbols" @click="findTrades(currExchange, pair)" v-show="pair.indexOf(pairSearch)!=-1">{{ pair }}</li>
+        <li v-for="pair in currExchange.symbols" @click="findTrades(currExchange, pair)" v-show="pair.toLowerCase().indexOf(pairSearch.toLowerCase())!=-1">{{ pair }}</li>
       </ul>
     </div>
   </div>
