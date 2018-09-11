@@ -1,14 +1,14 @@
 <template>
   <div class="height100">
     <div class="header-container">
-      <h2 class="text-center">Pair</h2>
-      <h4 class="text-center" v-show="currExchange">for: {{currExchange.id}}</h4>
+      <h2 class="text-center">Pair <small>for: {{currExchange.id}}</small></h2>
+      <input type="text" v-model="pairSearch" placeholder="Type an exchange name"></input>
     </div>
     <div class="items-container">
       <h4 class="text-center" v-show="!currExchange.symbols && !errMsg">Chose an exchange</h4>
       <h4 class="text-center" v-show="errMsg">{{errMsg}}</h4>
       <ul>
-        <li v-for="pair in currExchange.symbols" @click="findTrades(currExchange, pair)">{{ pair }}</li>
+        <li v-for="pair in currExchange.symbols" @click="findTrades(currExchange, pair)" v-show="pair.indexOf(pairSearch)!=-1">{{ pair }}</li>
       </ul>
     </div>
   </div>
@@ -24,6 +24,7 @@ export default {
     return {
       errMsg: '',
       currExchange: {},
+      pairSearch: '',
     };
   },
   methods: {
@@ -45,6 +46,10 @@ export default {
 </script>
 
 <style scoped>
+
+input{
+  width: 100%;
+}
 
 .items-container > ul {
   list-style-type: none;

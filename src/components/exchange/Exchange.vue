@@ -2,11 +2,11 @@
   <div class="height100">
     <div class="header-container">
       <h2 class="text-center">Exchange</h2>
-      <input type="text" v-model="exchangeFilter" placeholder="Type an exchange name"></input>
+      <input type="text" v-model="exchangeSearch" placeholder="Type an exchange name"></input>
     </div>
     <div class="items-container">
       <ul>
-        <li v-for="exchange in exchanges" @click="findPair(exchange)" v-show="exchange.indexOf(exchangeFilter)!=-1">{{ exchange }}</li>
+        <li v-for="exchange in exchanges" @click="findPair(exchange)" v-show="exchange.indexOf(exchangeSearch)!=-1">{{ exchange }}</li>
       </ul>
     </div>
   </div>
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       exchanges: ccxt.exchanges,
-      exchangeFilter: '',
+      exchangeSearch: '',
     };
   },
   methods: {
