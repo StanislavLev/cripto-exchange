@@ -1,4 +1,4 @@
-# cripto-exchange
+# crypto-exchange
 
 > Web page that allows to get info about cryptocurrency trading
 
